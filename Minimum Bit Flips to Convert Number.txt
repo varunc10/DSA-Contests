@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        vector<int> ans1;
+        vector<int> ans2;
+        while(start){
+            ans1.push_back(start%2);
+            start=start/2;
+        }
+        while(goal){
+            ans2.push_back(goal%2);
+            goal=goal/2;
+        }
+        while(ans1.size()!=ans2.size()){
+            if(ans1.size()<ans2.size()){
+                ans1.push_back(0);
+            }
+            else{
+                ans2.push_back(0);
+            }
+        }
+        reverse(ans1.begin(),ans1.end());
+        reverse(ans2.begin(),ans2.end());
+        for(int i:ans2){
+            cout<<i;
+        }
+        int count=0;
+        for(int i=0;i<ans1.size();i++){
+            if(ans1[i]!=ans2[i]){
+                count++;
+            }
+        }
+        return count;
+    }
+};
