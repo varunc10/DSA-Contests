@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int largestInteger(int num) {
+        vector<int> v;
+        while(num){
+            v.push_back(num%10);
+            num=num/10;
+        }
+        reverse(v.begin(),v.end());
+        for(int i=0;i<v.size();i++){
+            if(v[i]%2==0){
+                for(int j=i+1;j<v.size();j++){
+                    if(v[j]%2==0){
+                        if(v[j]>v[i]){
+                            swap(v[i],v[j]);
+                        }
+                    }
+                }
+            }
+            else{
+                for(int j=i+1;j<v.size();j++){
+                    if(v[j]%2!=0){
+                        if(v[j]>v[i]){
+                            swap(v[i],v[j]);
+                        }
+                    }
+                }
+            }   
+        }
+        int ans=0;
+        int i=0;
+        while(i<v.size()-1){
+            ans=ans+v[i];
+            ans=ans*10;
+            i++;
+        }
+        ans=ans+v[v.size()-1];
+        return ans;
+        
+    }
+};
