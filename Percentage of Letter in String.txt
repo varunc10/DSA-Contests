@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int percentageLetter(string s, char letter) {
+        vector<int> freq(26,0);
+        for(auto i:s){
+            freq[i-'a']++;
+        }
+        double ans=double(freq[letter-'a'])/double(s.size());
+        int a=ans*100;
+        return a;
+    }
+};

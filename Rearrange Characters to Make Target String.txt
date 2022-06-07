@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int rearrangeCharacters(string s, string target) {
+        unordered_map<char,int> m;
+        for(auto i:s){
+            m[i]++;
+        }
+        unordered_map<char,int> m2;
+        for(auto i:target){
+            m2[i]++;
+        }
+        vector<int> v;
+        for(auto i:m2){
+            if(m.find(i.first)!=m.end()){
+                v.push_back(m[i.first]/m2[i.first]);
+                // m[i.first]-=m2[i.first];
+                // if(m[i.first]==0){
+                //     m.erase(i.first);
+                // }
+            }
+            else{
+                return 0;
+            }
+        }
+        int l=*min_element(v.begin(),v.end());
+        return l;
+    }
+};
